@@ -15,17 +15,16 @@ import time
 GPIO.setmode(GPIO.BOARD)
 # GPIO.setmode(GPIO.BCM) 
 
-# Check if the channel is already in use: 
-if GPIO.gpio_function(channel) != GPIO.OUT: 
-    GPIO.setup(channel, GPIO.OUT)
-
 # Define the GPIO pins
 IN4 = 23
 IN3 = 24
 
-# Set up the GPIO pins as outputs
-GPIO.setup(IN4, GPIO.OUT)
-GPIO.setup(IN3, GPIO.OUT)
+# Check if the channel is already in use: 
+if GPIO.gpio_function(IN4) != GPIO.OUT: 
+    GPIO.setup(IN4, GPIO.OUT)
+
+if GPIO.gpio_function(IN3) != GPIO.OUT: 
+    GPIO.setup(IN3, GPIO.OUT)
 
 # Function to set motor direction
 def set_motor_direction(clockwise):
