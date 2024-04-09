@@ -12,28 +12,30 @@ import RPi.GPIO as GPIO
 import time
 
 # Set the GPIO numbering mode
-GPIO.setmode(GPIO.BOARD)
-# GPIO.setmode(GPIO.BCM) 
+# GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM) 
 
 # Define the GPIO pins
-IN4 = 23
-IN3 = 24
+IN1 = 23
+IN2 = 24
 
 # Check if the channel is already in use: 
-if GPIO.gpio_function(IN4) != GPIO.OUT: 
-    GPIO.setup(IN4, GPIO.OUT)
+if GPIO.gpio_function(IN2) != GPIO.OUT: 
+    print("IN2 is being setup") 
+    GPIO.setup(IN2, GPIO.OUT)
 
-if GPIO.gpio_function(IN3) != GPIO.OUT: 
-    GPIO.setup(IN3, GPIO.OUT)
+if GPIO.gpio_function(IN1) != GPIO.OUT: 
+    print("IN1 is being setup") 
+    GPIO.setup(IN1, GPIO.OUT)
 
 # Function to set motor direction
 def set_motor_direction(clockwise):
     if clockwise:
-        GPIO.output(IN4, GPIO.HIGH)
-        GPIO.output(IN3, GPIO.LOW)
+        GPIO.output(IN2, GPIO.HIGH)
+        GPIO.output(IN1, GPIO.LOW)
     else:
-        GPIO.output(IN4, GPIO.LOW)
-        GPIO.output(IN3, GPIO.HIGH)
+        GPIO.output(IN2, GPIO.LOW)
+        GPIO.output(IN1, GPIO.HIGH)
 
 try:
     while True:
