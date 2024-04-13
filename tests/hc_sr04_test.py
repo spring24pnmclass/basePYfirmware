@@ -7,7 +7,6 @@ Sample pinouts:
     3. ECHO — GPIO 27, which is PIN 13 on PI. 
     4. Ground
 """
-
 import RPi.GPIO as GPIO
 import time
 
