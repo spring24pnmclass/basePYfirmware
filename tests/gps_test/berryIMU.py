@@ -16,12 +16,12 @@ AA =  0.40      # Complementary filter constant
 ################# Compass Calibration values ############
 
 
-magXmin = -910
-magYmin = -2506
-magZmin = -2990
-magXmax = 2447
-magYmax = 2585
-magZmax = 1578
+magXmin = -2680
+magYmin = -2393
+magZmin = -3572
+magXmax = 2346
+magYmax = 2623
+magZmax = 1411
 
 
 #Kalman filter variables
