@@ -2,8 +2,8 @@
 Code to test the L298 motor controller. 
 
 The following are the pins to a single motor controller configuration: 
-    1. GPIO 23 — IN 4
-    2. GPIO 24 — IN 3    
+    1. GPIO 23 — IN 1
+    2. GPIO 24 — IN 2    
 
     TODO : Finish adding a ENA and ENB to control the speed of the motor. Currently, not using that pin allows the motor to spin at full speed. 
 """
