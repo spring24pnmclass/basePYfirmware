@@ -16,12 +16,12 @@ AA =  0.40      # Complementary filter constant
 ################# Compass Calibration values ############
 
 
-magXmin = -2680
-magYmin = -2393
-magZmin = -3572
-magXmax = 2346
-magYmax = 2623
-magZmax = 1411
+magXmin = -1712
+magYmin = -1316
+magZmin = -2629
+magXmax = 1199
+magYmax = 1688
+magZmax = 263
 
 
 #Kalman filter variables
@@ -132,7 +132,6 @@ a = datetime.datetime.now()
 
 
 while True:
-
     #Read the accelerometer,gyroscope and magnetometer values
     ACCx = IMU.readACCx()
     ACCy = IMU.readACCy()
@@ -241,4 +240,4 @@ while True:
     print(outputString)
 
     #slow program down a bit, makes the output more readable
-    time.sleep(0.03)
+    time.sleep(1)
