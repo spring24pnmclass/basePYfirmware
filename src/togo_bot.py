@@ -54,7 +54,6 @@ class UltrasonicSensor():
         distance = pulse_duration * 17150
         return round(distance, 2)
 
-
 class BerryIMU():
     
     def __init__(self):
@@ -71,12 +70,14 @@ class BerryIMU():
         self.AA =  0.40      # Complementary filter constant
 
         # Compass Calibration values (use calibrateBerryIMU.py to get values)
-        self.magXmin = -2680
-        self.magYmin = -2393
-        self.magZmin = -3572
-        self.magXmax = 2346
-        self.magYmax = 2623
-        self.magZmax = 1411
+        
+        self.magXmin = -1193
+        self.magYmin = -1269
+        self.magZmin = -2216
+        self.magXmax = 788
+        self.magYmax = 1177
+        self.magZmax = 247
+
 
     
     def getHeading(self):
@@ -168,3 +169,16 @@ class TogoBot():
         self.sensor1 = UltrasonicSensor(trigger_pin=17, echo_pin=27)
         self.sensor2 = UltrasonicSensor(trigger_pin=22, echo_pin=5)
         self.sensor3 = UltrasonicSensor(trigger_pin=6, echo_pin=26)
+
+imu = BerryIMU()
+
+while True: 
+    tilt = imu.getTiltCompensatedHeading()
+    heading = imu.getHeading()
+    time.sleep(1)
+    print("\t# HEADING %5.2f  tiltCompensatedHeading %5.2f #" % (heading, tilt))
+
+
+
+
+
