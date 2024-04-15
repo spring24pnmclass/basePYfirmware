@@ -1,7 +1,7 @@
 
 import time
 import math
-import IMU
+import basePYfirmware.src.IMU as IMU
 import datetime
 import os
 import sys

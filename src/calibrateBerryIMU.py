@@ -1,7 +1,6 @@
 import sys,signal,os
 import time
 import math
-
 import IMU
 import datetime
 
@@ -14,6 +13,7 @@ def handle_ctrl_c(signal, frame):
     print("magXmax = %i"%  (magXmax))
     print("magYmax = %i"%  (magYmax))
     print("magZmax = %i"%  (magZmax))
+    
     sys.exit(130) # 130 is exit code for ctrl-c
 
 
