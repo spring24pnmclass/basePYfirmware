@@ -1,22 +1,41 @@
 # TODO organize inputs here. 
-import forward from methods.py
 
 
 """
 This should be where all control @pathfinding will focus on coding. class togo_bot will have all abstractions. 
 """
 def main(): 
+    """
+    //initializing
+    from togo_bot import neo6m
 
-    '''
-    1/64 encoder 
-    2 * pi ~ 6 inches
+    loc = neo6m()
 
-    init 300 -> 620 // difference is 320
-    320/64 = 5 rotations
-    5 * 6 inches = 30 inches
-    '''
-    turnRight90()
-    forward()
+    pointA = [1314,1384];
+    pointB = [1384,1930];
+    loc
+    currLocation = pointA;
+    motorSpeed = 0;
+    Start at point A{
+        While (currLocation != pointA){
+            If (ultrasonic sensor senses obstacle){
+                setMotorSpeed(0);
+
+            }
+            Else{
+                setMotorSpeed(0);
+                currLocation = loc.getLocation();
+            }
+            if(currLocation == pointB){
+                Set motor speed = 0;
+                Send reached signal;
+                Break;
+            }
+        }
+    }
+
+    """
+    pass
 
 
 if __name__ == "__main__": 
