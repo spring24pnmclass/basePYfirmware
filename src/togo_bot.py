@@ -5,6 +5,8 @@ import IMU
 import datetime
 import os
 import sys
+from pigps import GPS
+
 
 # Utility classes: 
 class MotorController(): 
@@ -21,6 +23,19 @@ class MotorController():
 Class to control the HC-SRO4 ultrasonic sensor. 
 @precondition: set mode to GPIO.BCM. 
 """
+class neo6m():
+    def __init__(self):
+        self.gps = GPS()
+        self.latitude = 0
+        self.longitude = 0
+        self.gpstime = 0
+        self.altitude = 0
+    
+    def getLocation(self):
+        latitude = self.gps.lat
+        longitude = self.gps.lon
+        return latitude, longitude
+
 class UltrasonicSensor(): 
 
     def __init__(self, trigger_pin, echo_pin): 
@@ -168,13 +183,13 @@ class TogoBot():
         self.sensor2 = UltrasonicSensor(trigger_pin=22, echo_pin=5)
         self.sensor3 = UltrasonicSensor(trigger_pin=6, echo_pin=26)
 
-imu = BerryIMU()
+#imu = BerryIMU()
 
-while True: 
-    tilt = imu.getTiltCompensatedHeading()
-    heading = imu.getHeading()
-    time.sleep(1)
-    print("\t# HEADING %5.2f  tiltCompensatedHeading %5.2f #" % (heading, tilt))
+#while True: 
+    #tilt = imu.getTiltCompensatedHeading()
+    #heading = imu.getHeading()
+    #time.sleep(1)
+    #print("\t# HEADING %5.2f  tiltCompensatedHeading %5.2f #" % (heading, tilt))
 
 
 
