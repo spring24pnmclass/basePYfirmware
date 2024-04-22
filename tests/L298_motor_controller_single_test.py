@@ -22,8 +22,8 @@ GPIO.setmode(GPIO.BCM)
 IN1 = 23
 IN2 = 24
 
-IN3 = 25
-IN4 = 7
+IN3 = 10
+IN4 = 9
 
 # Define GPIO for PWM speed control 
 ENA = 12
@@ -110,4 +110,3 @@ try:
 except KeyboardInterrupt:
     # Clean up GPIO on Ctrl+C exit
     GPIO.cleanup()
-
