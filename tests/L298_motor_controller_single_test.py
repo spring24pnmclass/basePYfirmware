@@ -9,7 +9,6 @@ The following are the pins to a double motor controller configuration:
 
     5. GPIO 12 (PWM0) -- PIN 32 -- ENA 
     6. GPIO 13 (PWM1) -- PIN 33 -- ENB
-
 """
 
 import RPi.GPIO as GPIO

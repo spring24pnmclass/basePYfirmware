@@ -85,12 +85,14 @@ class BerryIMU():
         self.AA =  0.40      # Complementary filter constant
 
         # Compass Calibration values (use calibrateBerryIMU.py to get values)
+        
         self.magXmin = -1193
         self.magYmin = -1269
         self.magZmin = -2216
         self.magXmax = 788
         self.magYmax = 1177
         self.magZmax = 247
+
 
     
     def getHeading(self):
