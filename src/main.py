@@ -23,7 +23,7 @@ def main():
 
             }
             Else{
-                setMotorSpeed(0);
+                setMotorSpeed(50);
                 currLocation = loc.getLocation();
             }
             if(currLocation == pointB){
