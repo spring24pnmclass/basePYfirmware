@@ -75,8 +75,8 @@ class MotorController():
         pwm_b.start(speed)
 
     def stop(self): 
-        pwm_a.start(2)
-        pwm_b.start(2)
+        pwm_a.start(0)
+        pwm_b.start(0)
 
 """
 Class to contrl neo6m GPS 
@@ -121,6 +121,7 @@ class UltrasonicSensor():
         GPIO.setup(self.ECHO, GPIO.IN)
 
     def getDistance(self): 
+        
         # Ensure trigger is low
         GPIO.output(self.TRIG, False)
         time.sleep(0.001)
@@ -137,8 +138,6 @@ class UltrasonicSensor():
         while GPIO.input(self.ECHO) == 0:
             pulse_start = time.time()
             time.sleep(0.0001)  # Add a small delay to prevent busy waiting
-
-
 
         pulse_end = time.time()
         while GPIO.input(self.ECHO) == 1:
@@ -255,18 +254,22 @@ class TogoBot():
         self.ultrasonic3 = UltrasonicSensor(trigger_pin=6, echo_pin=26)
 
     def runBot(self):
+
         try:
             while True: 
                 dist1 = self.ultrasonic1.getDistance()
+                time.sleep(0.01)
                 dist2 = self.ultrasonic2.getDistance()
+                time.sleep(0.01)
                 dist3 = self.ultrasonic3.getDistance()
+                time.sleep(0.01)
 
-                if dist1 < 50 or dist2 < 50 or dist3 < 50:
+                if dist1 < 100 or dist2 < 100 or dist3 < 100:
                     self.motors.stop()
                 else:
                     self.motors.setSpeed(50)
 
-                time.sleep(1)
+                time.sleep(0.01)
         
         except KeyboardInterrupt:
             # Clean up GPIO on Ctrl+C exit
