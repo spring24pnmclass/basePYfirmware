@@ -153,6 +153,7 @@ class UltrasonicSensor():
 
 """
 Class to control the Berry IMU v3
+Connected via I2C protocol
 @precondition: set mode to GPIO.BCM. 
 """
 class BerryIMU():
@@ -248,10 +249,19 @@ class BerryIMU():
 class TogoBot():
 
     def __init__(self):
+        # Motor Controller and DC Motors w/ Encoders
         self.motors = MotorController(in1=23, in2=24, in3=10, in4=9, ena=12, enb=13)
+        
+        # Ultrasonic Sensors
         self.ultrasonic1 = UltrasonicSensor(trigger_pin=17, echo_pin=27)
         self.ultrasonic2 = UltrasonicSensor(trigger_pin=22, echo_pin=5)
         self.ultrasonic3 = UltrasonicSensor(trigger_pin=6, echo_pin=26)
+
+        # NEO6M GPS
+        self.gps = neo6m()
+
+        # Berry IMU
+        self.berryimu = BerryIMU()
 
     def runBot(self):
 
@@ -275,6 +285,13 @@ class TogoBot():
             # Clean up GPIO on Ctrl+C exit
             GPIO.cleanup()
 
+    def getLocation(self):
+        return self.gps.getLocation()
 
+    def getCompassDirection(self):
+        return self.berryimu.getTiltCompensatedHeading()
+
+
+# initialize TogoBot and have robot move 
 robot = TogoBot()
 robot.runBot()
