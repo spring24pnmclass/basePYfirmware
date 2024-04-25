@@ -54,7 +54,7 @@ GPIO.setup(ENA, GPIO.OUT)
 pwm_a = GPIO.PWM(ENA, 1000)  # 1000 Hz frequency
 # pwm_b = GPIO.PWM(ENB, 1000)  # 1000 Hz frequency
 
-pwm_a.start(30)  # Starts with 0% duty cycle
+pwm_a.start(50)  # Starts with 0% duty cycle
 # pwm_b.start(0)  # Starts with 0% duty cycle
 
 def motor_direction(clockwise): 
@@ -130,11 +130,20 @@ GPIO.add_event_detect(M1_ENC_A, GPIO.RISING, callback=motor_1_enc_a_callback)
 
 try:
     while True: 
-        time.sleep(3)
+        pwm_a.start(50)
         motor_direction(clockwise=True)
-
         time.sleep(3)
+
+        pwm_a.start(0)
+        time.sleep(0.1)
+
         motor_direction(clockwise=False)
+        pwm_a.start(50)
+        time.sleep(3)
+
+        pwm_a.start(0)
+        time.sleep(0.1)
+
 except KeyboardInterrupt:
     # Clean up GPIO on Ctrl+C exit
     GPIO.cleanup()

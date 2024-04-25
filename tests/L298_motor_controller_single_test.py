@@ -46,8 +46,16 @@ if GPIO.gpio_function(IN4) != GPIO.OUT:
     print("IN4 is being setup") 
     GPIO.setup(IN4, GPIO.OUT)
 
-GPIO.setup(ENA, GPIO.OUT)
-GPIO.setup(ENB, GPIO.OUT)
+if GPIO.gpio_function(ENA) != GPIO.OUT: 
+    print("ENA is being setup") 
+    GPIO.setup(ENA, GPIO.OUT)
+
+if GPIO.gpio_function(ENB) != GPIO.OUT: 
+    print("ENB is being setup") 
+    GPIO.setup(ENB, GPIO.OUT)
+
+# GPIO.setup(ENA, GPIO.OUT)
+# GPIO.setup(ENB, GPIO.OUT)
 pwm_a = GPIO.PWM(ENA, 1000)  # 1000 Hz frequency
 pwm_b = GPIO.PWM(ENB, 1000)  # 1000 Hz frequency
 
@@ -62,16 +70,16 @@ def set_motor_direction(clockwise):
         GPIO.output(IN1, GPIO.LOW)
 
         # motor B control 
-        GPIO.output(IN4, GPIO.HIGH) 
-        GPIO.output(IN3, GPIO.LOW) 
+        GPIO.output(IN4, GPIO.LOW) 
+        GPIO.output(IN3, GPIO.HIGH) 
     else: 
         # motor A control 
         GPIO.output(IN2, GPIO.LOW)
         GPIO.output(IN1, GPIO.HIGH)
 
         # motor B control 
-        GPIO.output(IN4, GPIO.LOW) 
-        GPIO.output(IN3, GPIO.HIGH) 
+        GPIO.output(IN4, GPIO.HIGH) 
+        GPIO.output(IN3, GPIO.LOW) 
 
 def motor_direction_test(): 
     # Rotate motor clockwise for 2 seconds
@@ -106,7 +114,41 @@ def motor_speed_test():
             index+=1
 
 try:
-    motor_speed_test() 
+
+    set_motor_direction(clockwise=True)
+
+    pwm_a.start(20)
+    pwm_b.start(20)
+    print("set 20") 
+
+    time.sleep(0.5) 
+
+    pwm_a.start(40)
+    pwm_b.start(40)
+    print("set 40") 
+
+    time.sleep(0.5) 
+
+    pwm_a.start(60)
+    pwm_b.start(60)
+    print("set 60") 
+    
+    time.sleep(0.5) 
+    
+    pwm_a.start(80)
+    pwm_b.start(80)
+    print("set 80") 
+
+    time.sleep(0.5) 
+
+    pwm_a.start(100)
+    pwm_b.start(100)
+    print("set 100") 
+
+    while True: 
+        pass
+
+    GPIO.cleanup()
 except KeyboardInterrupt:
     # Clean up GPIO on Ctrl+C exit
     GPIO.cleanup()

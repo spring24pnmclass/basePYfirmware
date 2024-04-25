@@ -14,14 +14,31 @@ import time
 GPIO.setmode(GPIO.BCM)
 
 # Define GPIO pins
-TRIG_PIN = 17
-ECHO_PIN = 27
+TRIG_PIN1 = 17
+ECHO_PIN1 = 27
 
 # Setup GPIO pins
-GPIO.setup(TRIG_PIN, GPIO.OUT)
-GPIO.setup(ECHO_PIN, GPIO.IN)
+GPIO.setup(TRIG_PIN1, GPIO.OUT)
+GPIO.setup(ECHO_PIN1, GPIO.IN)
 
-def distance():
+# Define GPIO pins
+TRIG_PIN2 = 22
+ECHO_PIN2 = 5
+
+# Setup GPIO pins
+GPIO.setup(TRIG_PIN2, GPIO.OUT)
+GPIO.setup(ECHO_PIN2, GPIO.IN)
+
+# Define GPIO pins
+TRIG_PIN3 = 6
+ECHO_PIN3 = 26
+
+# Setup GPIO pins
+GPIO.setup(TRIG_PIN3, GPIO.OUT)
+GPIO.setup(ECHO_PIN3, GPIO.IN)
+
+
+def distance(TRIG_PIN, ECHO_PIN):
     # Ensure trigger is low
     GPIO.output(TRIG_PIN, False)
     time.sleep(0.5)
@@ -50,9 +67,15 @@ def distance():
 
 try:
     while True:
-        dist = distance()
-        print("Distance: {} cm".format(dist))
-        time.sleep(1)
+        dist1 = distance(TRIG_PIN1, ECHO_PIN1)
+        print("Distance1: {} cm".format(dist1))
+
+        dist2 = distance(TRIG_PIN2, ECHO_PIN2)
+        print("Distance2: {} cm".format(dist2))
+
+        dist3 = distance(TRIG_PIN3, ECHO_PIN3)
+        print("Distance3: {} cm".format(dist3))
+        time.sleep(0.1)
 
 except KeyboardInterrupt:
     GPIO.cleanup()
